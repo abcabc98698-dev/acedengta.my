@@ -1,0 +1,134 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import { siteConfig } from "@/config/site";
+import { ShieldCheck, Lock, EyeOff, Server, HardDrive, RefreshCw, FileText } from "@lucide/astro";
+---
+
+<Layout
+  title="隐私政策 — 灯塔加速器官网"
+  description="灯塔加速器严格遵守零日志隐私政策。详细了解我们如何保护您的数字隐私、网络安全与数据传输安全。"
+  keywords="灯塔加速器隐私政策, 零日志政策, 翻墙隐私保护, 网络安全, 端到端加密"
+>
+  <section class="site-container my-12">
+    <PageHeader
+      title="隐私保护政策与数据治理规范"
+      description="我们视用户数字隐私为生命线。灯塔加速器全链路执行严格的零日志原则与前沿加密标准。"
+    />
+  </section>
+
+  <section class="site-container max-w-4xl mx-auto pb-24">
+    <article class="space-y-12 text-sm md:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
+      
+      <!-- Core Commitment Banner -->
+      <div class="p-6 md:p-8 rounded-3xl border border-dashed border-primary/25 bg-primary/5 dark:bg-primary/10">
+        <h2 class="text-lg md:text-xl font-bold text-primary dark:text-primary-light flex items-center gap-2 mb-3">
+          <ShieldCheck class="w-6 h-6 shrink-0" /> 核心承诺：严格无日志准则 (Strict Zero-Logs Policy)
+        </h2>
+        <p class="text-xs md:text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed">
+          灯塔加速器（Acedengta）自 2020 年成立以来，始终坚决执行零日志架构。我们郑重承诺：<strong>不记录、不存储、不监控、不出售</strong>任何用户的网络浏览历史、访问目标域名、DNS 查询明细、IP 流量数据包或连接元数据。我们的节点服务器仅作为高可用内存级加密网络传输通道运行，在系统物理架构层面杜绝任何用户上网行为的逆向溯源可能。
+        </p>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <HardDrive class="w-5 h-5 text-primary" /> 1. 纯内存（RAM-Only）运行架构与硬件安全
+        </h2>
+        <p>
+          为确保零日志政策的技术可信度与彻底性，灯塔加速器的所有骨干接入节点和边缘转发节点全面采用无盘 RAM-Disk 内存镜像操作系统部署：
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-xs md:text-sm">
+          <li><strong>无持久化存储：</strong>所有节点服务器均彻底禁用本地传统机械硬盘与 SSD 的数据写盘行为。操作系统仅加载于高速易失性 RAM 内存中运行。</li>
+          <li><strong>重启即全量擦除：</strong>一旦服务器发生硬件断电、系统重启或维护轮换，运行内存中的全部临时缓存与会话数据将瞬间物理级湮灭，不留下任何磁道残留。</li>
+          <li><strong>系统日志实时黑洞化：</strong>服务器底层的 Linux 内核已在内核编译阶段将 <code>/var/log/syslog</code>、<code>auth.log</code> 及连接统计定向至 <code>/dev/null</code>，杜绝任何本地日志落盘。</li>
+        </ul>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <EyeOff class="w-5 h-5 text-primary" /> 2. 严正声明：我们绝不收集的数据清单
+        </h2>
+        <p>
+          无论是在平时运营还是在特殊网络维护期间，我们绝不收集、记录或保留以下任何维度的用户隐私资产：
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 绝不收集网络行为数据</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">绝不记录用户访问的 URL、网页内容、下载文件、搜索词条或社交聊天内容。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 绝不记录真实源 IP 地址</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">用户发起握手后，连接套接字仅在握手建立阶段于内存保留数毫秒，断连即销毁。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 绝不存储 DNS 解析日志</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">节点均搭载本地递归 DoH/DoT 匿名解析栈，完全剥离任何与用户身份关联的域名解析记录。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 绝不进行深度数据包检测 (DPI)</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">传输层仅执行盲目数据包转发，绝不对有效载荷进行内容解包、特征标记或商业偏好分析。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <FileText class="w-5 h-5 text-primary" /> 3. 最小化账户元数据与加密保护
+        </h2>
+        <p>
+          为了维系账号登录、套餐计费及带宽配额的正确核销，官方用户中心仅以最小必要原则处理以下极简信息：
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-xs md:text-sm">
+          <li><strong>账户身份识别：</strong>注册时提供的电子邮箱（建议用户使用 ProtonMail、Tuta 等匿名隐私邮箱）及密码。密码全线采用 Argon2id 算法与随机盐（Salt）单向高强度哈希加密，任何运维人员均无法逆向获取用户明文密码。</li>
+          <li><strong>套餐与流量配额：</strong>记录所选方案类型（如轻量版 69GB/月、致敬斯诺克 147 永久套餐 247GB 等）、有效期截止时间以及当月已消耗字节总数。此项数据仅为高精度流量计数器，不附带任何访问路径或协议行为信息。</li>
+          <li><strong>财务交易凭证：</strong>通过第三方合规支付网关处理结算，灯塔加速器平台绝不存储用户的银行卡号、CVC 码或支付平台密码。系统仅保存不可逆的交易哈希 OrderID 用作对账及售后售后服务。</li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <Lock class="w-5 h-5 text-primary" /> 4. 传输层加密协议与防中间人劫持
+        </h2>
+        <p>
+          灯塔加速器全线节点均采用新一代 VLESS 极速协议结合 TLS 1.3 / XTLS 原生强加密技术：
+        </p>
+        <p class="text-xs md:text-sm leading-relaxed">
+          客户端与专线入口之间的数据封装完全遵循 AES-256-GCM 或 ChaCha20-Poly1305 工业级对称加密算法标准。外部网络嗅探器或公共 Wi-Fi 窃听者只能观察到符合标准 HTTPS 规范的随机伪装流量特征，绝对无法解密传输内容或篡改数据流完整性。
+        </p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <RefreshCw class="w-5 h-5 text-primary" /> 5. 用户权利与彻底注销机制 (GDPR 准则)
+        </h2>
+        <p>
+          我们充分尊重全球通用隐私法律与 GDPR（通用数据保护条例）所倡导的“被遗忘权”：
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-xs md:text-sm">
+          <li><strong>数据访问与导出权：</strong>用户可随时在控制台面板查阅本人的套餐详情、订阅链接及工单历史记录。</li>
+          <li><strong>彻底销毁与注销权：</strong>用户拥有随时注销账户的权利。一旦在工单中心申请账户注销，我们的中央数据库将在 24 小时内彻底执行物理级擦除，相关邮箱标识与历史账单关联将被全量覆写粉碎。</li>
+        </ul>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <Server class="w-5 h-5 text-primary" /> 6. 政策修订通知与隐私专席联络
+        </h2>
+        <p>
+          随着全球隐私法律的发展与底层加密架构的技术演进，我们可能适时更新本隐私保护政策。任何重大原则性变更均会通过官网公告及 Telegram 官方频道向全网用户提前公示。
+        </p>
+        <p class="text-xs md:text-sm">
+          如果您对本隐私政策的实施细则、数据治理实践或零日志架构有任何疑问、建议或合规咨询，欢迎随时通过官方支持邮箱与隐私专员直接沟通：
+          <a href={`mailto:${siteConfig.mail}`} class="font-medium text-primary hover:underline">{siteConfig.mail}</a>。
+        </p>
+      </div>
+
+    </article>
+  </section>
+</Layout>

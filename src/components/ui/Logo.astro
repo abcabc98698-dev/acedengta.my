@@ -1,7 +1,19 @@
+---
+import { siteConfig } from "@/config/site.js";
+---
 <a
   href="/"
-  class="h-10 text-base group relative z-30 flex items-center aspect-square"
+  class="h-10 text-base group relative z-30 flex items-center gap-2.5"
+  aria-label={siteConfig.title}
 >
-  <img src="/assets/logo.png" alt="Logo" class="w-10 h-10 rounded-full" />
+  <img
+    src="/assets/logo.png"
+    alt={`${siteConfig.title} Logo`}
+    width="40"
+    height="40"
+    class="w-10 h-10 rounded-full flex-shrink-0 transition-transform duration-200 group-hover:scale-105"
+  />
+  <span class="font-brand text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
+    {siteConfig.title}
+  </span>
 </a>
-

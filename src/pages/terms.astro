@@ -1,0 +1,140 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import { siteConfig } from "@/config/site";
+import { CheckCircle, ShieldAlert, Cpu, Award, RefreshCw, FileCheck } from "@lucide/astro";
+---
+
+<Layout
+  title="服务条款与使用协议 — 灯塔加速器官网"
+  description="灯塔加速器服务使用条款与服务协议。详细了解您的用户权益、服务等级协议 (SLA)、退款保障与合规使用准则。"
+  keywords="灯塔加速器服务条款, 使用协议, 用户服务保障, SLA保障, 退款政策"
+>
+  <section class="site-container my-12">
+    <PageHeader
+      title="用户服务条款与服务等级协议 (SLA)"
+      description="使用灯塔加速器服务即代表您同意并接受本服务协议中的所有权利义务与保障规范。"
+    />
+  </section>
+
+  <section class="site-container max-w-4xl mx-auto pb-24">
+    <article class="space-y-12 text-sm md:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
+      
+      <!-- Key Summary Card -->
+      <div class="p-6 md:p-8 rounded-3xl border border-dashed border-primary/25 bg-primary/5 dark:bg-primary/10">
+        <h2 class="text-lg md:text-xl font-bold text-primary dark:text-primary-light flex items-center gap-2 mb-3">
+          <Award class="w-6 h-6 shrink-0" /> 五年品质沉淀：透明契约与可靠保障
+        </h2>
+        <p class="text-xs md:text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed">
+          灯塔加速器（Acedengta）自 2020 年上线运营以来，始终坚守“真实专线、透明定价、不限设备、客户至上”的核心契约。本条款旨在明确双方在服务交付、网络可用性、账号权益及合规边界上的权利与义务，切实保障每一位付费用户的合法权益与良好体验。
+        </p>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <FileCheck class="w-5 h-5 text-primary" /> 1. 协议确认与服务适用范围
+        </h2>
+        <p>
+          当您在官方控制台完成账户注册、勾选同意协议或实际购买并使用灯塔加速器提供的网络传输服务时，即视为您已充分阅读并无保留接受本条款的全部内容。
+        </p>
+        <p class="text-xs md:text-sm">
+          灯塔加速器提供的专线加速服务定位于：<strong>合法出海商业运营、跨国科研与学术文献查阅、软件开发与技术资讯检索、跨境电商多店铺管理，以及合法海外流媒体与数字视听体验</strong>。用户必须承诺其网络行为符合国际互联网通用规范以及服务器所在地的相关法律要求。
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <Cpu class="w-5 h-5 text-primary" /> 2. 99.98% 骨干网络服务等级协议 (SLA)
+        </h2>
+        <p>
+          灯塔加速器为全系付费方案提供企业级服务等级保障标准：
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-xs md:text-sm">
+          <li><strong>骨干可用率保障：</strong>我们承诺 IEPL/IPLC 企业级专线骨干中转网络的月度综合在线可用率不低于 <strong>99.98%</strong>。</li>
+          <li><strong>毫秒级自动容灾切换：</strong>核心传输链路配备多路冗余备份。一旦发生海底光缆故障或上游机房局部断电，系统 BGP 路由矩阵将在 300 毫秒内自动将流量牵引至备用专线，保障业务不间断。</li>
+          <li><strong>真实 1.0 倍率标准：</strong>全线节点严守 ×1.0 消耗倍率标准，杜绝任何暗扣流量与虚假倍率陷阱。</li>
+        </ul>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <CheckCircle class="w-5 h-5 text-primary" /> 3. “全系不限制在线设备”的使用规则与边界
+        </h2>
+        <p>
+          为用户消除繁琐的设备数焦虑是灯塔加速器的核心优势。我们秉承以下设备政策：
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-xs md:text-sm">
+          <li><strong>个人及家庭多端自由连接：</strong>用户可在本人的手机、台式机、笔记本电脑、平板电脑及家用软路由上同时配置并使用同一个订阅链接，系统绝不设置并发设备数上限。</li>
+          <li><strong>禁止公网滥用与恶意转售：</strong>个人订阅凭据属于专属私有资产。严禁在社交媒体、开源论坛、公开聊天群组中分发、倒卖或提供公开免密代理。系统若探测到同一订阅在极短时间内出现数百个非同源公网 IP 的大流量高频请求，将触发自动化临时风控以保护全站其他用户的带宽质量。</li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <ShieldAlert class="w-5 h-5 text-primary" /> 4. 禁止使用行为与反滥用治理清单 (Anti-Abuse)
+        </h2>
+        <p>
+          为维系节点原生 IP 的极高纯净度与全站用户的低延迟体验，任何通过灯塔加速器网络从事以下行为的用户，其服务将被即时无偿中止并冻结：
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 严禁网络攻击行为</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">严禁利用节点发起分布式拒绝服务攻击（DDoS）、SYN Flood、端口扫描或自动化漏洞探测测试。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 严禁批量邮件垃圾群发 (SPAM)</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">所有节点默认封禁 TCP 25 端口，禁止任何批量商业垃圾邮件或钓鱼邮件投递。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 严禁公网 BT/PT 高频做种</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">禁止通过公网 BitTorrent/P2P 做种占用大量专线并发连接（建议使用专用 VPS 或网盘下载）。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800">
+            <h3 class="font-bold text-neutral-900 dark:text-white mb-1.5 text-red-500">× 严禁金融欺诈与暗网黑产</h3>
+            <p class="text-neutral-500 dark:text-neutral-400">严禁用于网络洗钱、信用卡盗刷、黑客攻击或传播未经许可的违法违禁数字资料。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+          <RefreshCw class="w-5 h-5 text-primary" /> 5. 套餐资费、斯诺克 147 永久版权益与退款政策
+        </h2>
+        <ul class="list-disc pl-6 space-y-2 text-xs md:text-sm">
+          <li><strong>轻量版套餐：</strong>按年计费（99元/年），每月自动注入 69GB 高速流量，账单到期日前按月重置周期配额，未用完流量不累计至下月。</li>
+          <li><strong>致敬斯诺克 147 永久套餐：</strong>一次性付费 147 元买断，永久提供 247GB 优质高速流量，无使用截止日期，直到流量自然耗尽为止。</li>
+          <li><strong>极速版套餐：</strong>按月计费（25元/月），支持半年付 9 折、年付 8 折等梯度优惠。</li>
+          <li><strong>定制版方案：</strong>按月计费（680元/月），提供 500GB+ 独立独享 IPLC 物理专线与纯净原生 IP，支持一对一线下需求确认与定制落地。</li>
+          <li><strong>退款与争议处理：</strong>针对新购付费套餐的用户，若在交付后 24 小时内因平台方技术故障导致全线节点彻底无法连通，且技术专席在接到工单后未能完成修复，用户有权申请按原支付通道原路退还套餐款项。</li>
+        </ul>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white mb-3">
+          6. 第三方平台解封说明与免责声明
+        </h2>
+        <p class="text-xs md:text-sm leading-relaxed">
+          灯塔加速器通过持续维护全球原生 IP 资源池以确保 ChatGPT、Claude、TikTok、Netflix、Disney+ 等海外服务的无障碍访问。然而，由于上述第三方商业平台可能随时升级其自身的风控算法或调整区域访问准则，如遇特定平台临时出现访问限制，技术运维团队将在发现后第一时间轮换调度受影响的出口 IP 节点，此类第三方风控动态调整不属于平台违约范畴。
+        </p>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="space-y-4">
+        <h2 class="text-xl md:text-2xl font-brand font-bold text-neutral-900 dark:text-white mb-3">
+          7. 条款修订与官方联络渠道
+        </h2>
+        <p class="text-xs md:text-sm leading-relaxed">
+          灯塔加速器保留在合规需求及技术架构升级时调整本服务条款的权利。重大调整将通过官方网站首页及工单系统通知。如您对本服务条款有任何疑问，请随时联系官方客服邮箱：
+          <a href={`mailto:${siteConfig.mail}`} class="font-medium text-primary hover:underline">{siteConfig.mail}</a>。
+        </p>
+      </div>
+
+    </article>
+  </section>
+</Layout>

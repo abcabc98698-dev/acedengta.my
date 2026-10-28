@@ -13,20 +13,26 @@
 	},
 	{
 		"id": 3,
-		"name": "Node.js",
-		"desc": "Runtime & tooling",
-		"image": "/assets/stack/node.jpg"
+		"name": "TypeScript",
+		"desc": "Type-safe development",
+		"image": "/assets/stack/ts.jpg"
 	},
 	{
 		"id": 4,
-		"name": "GitHub",
-		"desc": "Version control & CI",
-		"image": "/assets/stack/figma.jpg"
+		"name": "Node.js",
+		"desc": "High-performance runtime",
+		"image": "/assets/stack/node.jpg"
 	},
 	{
 		"id": 5,
-		"name": "Cloudflare",
-		"desc": "Edge & CDN",
+		"name": "Figma",
+		"desc": "Design system & prototyping",
+		"image": "/assets/stack/figma.jpg"
+	},
+	{
+		"id": 6,
+		"name": "Motion",
+		"desc": "Fluid reactive animations",
 		"image": "/assets/stack/motion.jpg"
 	}
 ]

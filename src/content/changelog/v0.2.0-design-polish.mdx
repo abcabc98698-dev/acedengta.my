@@ -1,28 +1,12 @@
 ---
-title: "Design polish and motion tuning"
-publishDate: 2026-02-15
-version: "v0.2.0"
-description: "Dark mode contrast, motion tuning, and the reusable BrowserFrame component."
+title: "物理 IEPL 内网专线全面重构，晚高峰抖动压降至 5ms 内"
+publishDate: 2025-11-20
+version: "v2025.11"
+description: "主干接入新一代企业内网 IEPL 专线，彻底不经过公网 GFW，晚高峰丢包率趋近于零。"
 ---
 
-## Improvements
+## 专线重构成果
 
-- **Dark mode contrast pass** - lifted `--color-text-secondary-dark` from `#a8b5c8` to `#c5cedb` for better body-copy readability at 14-16px sizes
-- **Primary in dark mode** - brightened `--color-primary-dark` from `#3478d4` to `#3884eb` so links stay readable against the deep navy canvas
-- **Softer card edges** - dark-mode card borders moved from `neutral-800` to `neutral-700`
-- **AnimatedText tuning** - tightened the hero text entrance timing and reduced first-paint overhead
-- **AOS staggering** - standardized reveal sequences around predictable delay steps
-
-## New component
-
-- **`BrowserFrame.astro`** - the Mac-style window chrome around product previews, extracted into a reusable component with `url`, `variant`, and `className` props
-
-## Fixes
-
-- Header z-index conflict with FAQ accordion on mobile Safari
-- `prefers-reduced-motion` handling for text entrances
-- TOC sticky offset on wide article layouts
-
-## Release status
-
-`v0.2` made the template feel more coherent, but the content architecture and final SaaS story were still being shaped for `v1.0`.
+- **物理专线直连**：沪日、深港两条核心跨国专属光缆通道正式投入生产环境，网络抖动压降至 5ms 以内。
+- **4K/8K 极致秒开**：YouTube、Netflix 4K HDR 视频拖拽加载速度提升 3 倍以上。
+- **全节点保持 ×1.0 真实倍率**：坚守真实计量原则，不虚标、不暗扣，真实消耗每一兆流量。

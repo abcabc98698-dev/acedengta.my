@@ -7,29 +7,27 @@ const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   product: [
-    { name: "Features", url: "/features" },
-    { name: "Pricing", url: "/pricing" },
-    { name: "Changelog", url: "/changelog" },
-    { name: "Sign in", url: "/sign-in" },
-    { name: "Sign up", url: "/sign-up" },
+    { name: "套餐资费", url: "/pricing" },
+    { name: "专线优势", url: "/features" },
+    { name: "服务状态", url: "/changelog" },
+    { name: "官方注册", url: "/sign-up" },
+    { name: "控制台登录", url: "/sign-in" },
   ],
   resources: [
-    { name: "Blog", url: "/blog" },
-    { name: "Elements", url: "/elements" },
-    { name: "404", url: "/404" },
-    { name: "Docs", url: siteConfig.social.github + "#readme" },
-    { name: "GitHub", url: siteConfig.social.github },
+    { name: "配置教程", url: "/blog" },
+    { name: "组件参考", url: "/elements" },
+    { name: "RSS 订阅", url: "/rss.xml" },
+    { name: "Sitemap 索引", url: "/sitemap-index.xml" },
   ],
   company: [
-    { name: "About", url: "/about" },
-    { name: "Contact", url: "/contact" },
+    { name: "关于我们", url: "/about" },
+    { name: "帮助支持", url: "/contact" },
   ],
   legal: [
-    { name: "License (MIT)", url: siteConfig.social.github + "/blob/main/LICENSE" },
+    { name: "隐私保护政策", url: "/privacy" },
+    { name: "用户服务条款", url: "/terms" },
   ],
 };
-
-const templateVersion = "v1.0.0";
 ---
 
 <section class="text-gray-700 border-t mt-20 md:mt-48 border-dashed border-primary/15 dark:border-primary-dark/15 border-[.75px]">
@@ -39,7 +37,7 @@ const templateVersion = "v1.0.0";
       <div class="max-w-sm">
         <Logo />
         <p class="mt-4 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
-          A polished SaaS template built with Astro and Tailwind CSS. Open-source, fast, and ready for production.
+          灯塔加速器（AceDengta）官方品牌官网。自 2020 年稳定运营，专注于企业级 IEPL 内网专线、VLESS 协议与高可用架构。为全球用户提供长久、可信赖的高速网络加速服务。
         </p>
       </div>
 
@@ -47,7 +45,7 @@ const templateVersion = "v1.0.0";
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 md:gap-12">
         <!-- Product -->
         <div>
-          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Product</h4>
+          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">产品与服务</h4>
           <ul class="space-y-3">
             {footerLinks.product.map((link) => (
               <li>
@@ -61,7 +59,7 @@ const templateVersion = "v1.0.0";
 
         <!-- Resources -->
         <div>
-          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Resources</h4>
+          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">资源与指南</h4>
           <ul class="space-y-3">
             {footerLinks.resources.map((link) => (
               <li>
@@ -75,7 +73,7 @@ const templateVersion = "v1.0.0";
 
         <!-- Company -->
         <div>
-          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Company</h4>
+          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">关于与支持</h4>
           <ul class="space-y-3">
             {footerLinks.company.map((link) => (
               <li>
@@ -89,7 +87,7 @@ const templateVersion = "v1.0.0";
 
         <!-- Legal -->
         <div>
-          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Legal</h4>
+          <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-4">法律与合规</h4>
           <ul class="space-y-3">
             {footerLinks.legal.map((link) => (
               <li>
@@ -107,17 +105,17 @@ const templateVersion = "v1.0.0";
     <div class="border-t border-dashed border-primary/10 dark:border-primary-dark/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-sm text-neutral-400 dark:text-neutral-500">
         © {currentYear}
-        <a href={siteConfig.url || " "} target="_blank" class="hover:text-primary dark:hover:text-primary-light transition-colors">{siteConfig.author || " "}</a>.
-        Released under the MIT License.
+        <a href={siteConfig.url || "/"} class="hover:text-primary dark:hover:text-primary-light transition-colors">{siteConfig.title} ({siteConfig.nameEn})</a>.
+        官方授权版权所有 · 保留一切权利。
       </p>
 
       <div class="flex items-center gap-4">
         <span class="inline-flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-500">
           <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-dashed border-primary/30 text-primary/80">
             <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-            {templateVersion}
+            2020 - {currentYear} 稳定运营
           </span>
-          <span>Built with Astro & Tailwind</span>
+          <span>IEPL 企业级专线</span>
         </span>
         <span class="inline-flex justify-center space-x-4">
           {socialLinks.map((social) => (

@@ -2,94 +2,122 @@
 import Layout from "@/layouts/Layout.astro";
 import Button from "@/components/ui/Button.astro";
 import { siteConfig } from "@/config/site";
-import { ArrowRight, Bug, Clock3, GitFork, LifeBuoy, Mail, MessageSquare, Send, Sparkles } from "@lucide/astro";
-
-const contactTopics = [
-  { value: "general", label: "General inquiry" },
-  { value: "sales", label: "Sales / pricing" },
-  { value: "partnership", label: "Partnership" },
-  { value: "support", label: "Customer support" },
-  { value: "bug", label: "Bug report" },
-];
+import {
+  ArrowRight, Clock3, LifeBuoy, Mail, MessageSquare, Sparkles,
+  ShieldCheck, SendHorizontal, FileCode
+} from "@lucide/astro";
 
 const channels = [
   {
+    icon: MessageSquare,
+    label: "官方控制台在线工单 (推荐)",
+    text: "登录控制台提交工单，技术专席 10-15 分钟快速响应",
+    href: siteConfig.registerUrl,
+    isExternal: true,
+  },
+  {
     icon: Mail,
-    label: "Email",
+    label: "官方官方服务邮箱",
     text: siteConfig.mail,
     href: `mailto:${siteConfig.mail}`,
+    isExternal: false,
   },
   {
-    icon: GitFork,
-    label: "GitHub",
-    text: "Open an issue",
-    href: siteConfig.social.github,
-  },
-  {
-    icon: MessageSquare,
-    label: "Twitter",
-    text: `@${siteConfig.social.twitterName}`,
-    href: siteConfig.social.twitter,
+    icon: SendHorizontal,
+    label: "Telegram 官方通知频道",
+    text: "@acedengta_official (最新维护与优惠推送)",
+    href: siteConfig.social.telegram,
+    isExternal: true,
   },
 ];
 
 const expectations = [
-  { icon: Clock3, title: "Reply window", desc: "Most messages get a response within 1 business day." },
-  { icon: LifeBuoy, title: "Support context", desc: "Share your page, browser, and a short reproduction when reporting issues." },
-  { icon: Bug, title: "Template note", desc: "This form is UI-only until you connect your own backend." },
+  { icon: Clock3, title: "响应时效承诺 (SLA)", desc: "控制台在线工单实行 7×24 小时全天候技术轮值机制。针对 P0 级别严重骨干网络异常，技术团队承诺 15 分钟内介入排障；常规配置与账单咨询平均在 30 分钟内完成专业解答。" },
+  { icon: LifeBuoy, title: "本地排查优先建议", desc: "如遇到节点连接超时或订阅拉取异常，建议您在发起工单前优先核实本地网络防火墙设置、客户端系统时间同步状态（NTP）及订阅缓存，通常可即刻恢复正常连接。" },
+  { icon: ShieldCheck, title: "企业独立专线定制", desc: "如您的跨境电商团队需要多店铺独立防关联环境，或 TikTok 海外直播需要独占原生住宅 IP（680元/月定制方案），可在注册官方账户后直接在工单系统提交定制诉求，专属技术顾问将提供 1 对 1 架构支持。" },
+];
+
+const troubleshootingSteps = [
+  {
+    step: "01",
+    title: "检查系统时钟精准同步 (NTP)",
+    desc: "VLESS 与 TLS 握手对系统时间偏差极其敏感。若本地设备时间与标准北京时间偏差超过 90 秒，TLS 证书校验将直接失败导致握手超时。请在 Windows 设置或 macOS 时间偏好中点击“立即同步”。"
+  },
+  {
+    step: "02",
+    title: "强制更新客户端订阅配置",
+    desc: "当出现大面积节点显示为 -1ms 或 Timeout 时，通常为上游更新了动态入口解析。请在 Clash Verge、Shadowrocket 等客户端内右键或下拉刷新订阅链接，获取最新的服务器 IP 与端口映射。"
+  },
+  {
+    step: "03",
+    title: "检查虚拟网卡驱动 (Wintun / TUN)",
+    desc: "如果开启 TUN 虚拟网卡模式后无法上网，请检查本地是否存在其他 VPN、杀毒软件（如 360、火绒网络防护）冲突，必要时在客户端设置中重新安装或重置 Wintun 驱动程序并重启客户端。"
+  },
+];
+
+const quickGuides = [
+  { title: "Clash Verge Rev 客户端全平台配置教程", href: "/blog/clash-verge-setup-guide/", tag: "桌面端" },
+  { title: "iOS 小火箭（Shadowrocket）订阅导入优化", href: "/blog/shadowrocket-ios-tutorial/", tag: "移动端" },
+  { title: "ChatGPT、TikTok 与 4K 海外流媒体解锁指南", href: "/blog/chatgpt-streaming-unlock-practice/", tag: "场景指南" },
+  { title: "IEPL 企业专线与 VLESS 协议深度技术拆解", href: "/blog/vless-iepl-architecture-analysis/", tag: "架构解析" },
 ];
 ---
 
 <Layout
-  title="Contact - RicoFast"
-  description="Have questions, feedback, or partnership ideas? We'd love to hear from you."
+  title="帮助支持与客户服务 — 灯塔加速器官网"
+  description="灯塔加速器官方客服与技术支持中心。提供 7×24 小时工单支持、客户端配置答疑、节点自检排查流程及企业专线定制咨询。"
+  keywords="灯塔加速器客服, 灯塔机场工单, 科学上网教程支持, 翻墙客户端配置, 节点超时排查"
 >
   <main class="site-container py-12 md:py-20">
-    <section class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)] lg:items-start">
+    <section class="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,1.05fr)] lg:items-start">
+      {/* Left Info Column */}
       <div data-aos="fade-up-xs" data-aos-once="true">
         <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-xs font-medium text-primary dark:border-primary-light/20 dark:bg-primary-light/10 dark:text-primary-light">
           <Sparkles size={14} />
-          Contact
+          客户服务与支持中心
         </p>
-        <h1 class="max-w-xl font-brand text-4xl leading-tight tracking-normal text-neutral-800 dark:text-neutral-100 sm:text-5xl lg:text-6xl">
-          Tell us what you are building.
+        <h1 class="max-w-xl font-brand text-3xl md:text-5xl font-bold leading-tight tracking-normal text-neutral-900 dark:text-white">
+          随时为您提供专业、及时的技术协助
         </h1>
-        <p class="mt-5 max-w-lg text-base leading-8 text-neutral-600 dark:text-neutral-300">
-          Questions, feedback, partnership ideas, or bug reports are all welcome. Send the details and we will point you in the right direction.
+        <p class="mt-4 max-w-lg text-sm md:text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
+          无论您在客户端订阅导入、线路选择、晚高峰测速还是企业独享专线定制中有任何疑问，灯塔加速器工程师团队都将全天候竭诚为您答疑解惑。
         </p>
 
-        <div class="mt-10 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-          {channels.map(({ icon: Icon, label, text, href }, index) => (
+        {/* Contact Channels */}
+        <div class="mt-8 space-y-3">
+          {channels.map(({ icon: Icon, label, text, href, isExternal }, index) => (
             <a
               href={href}
-              target={href.startsWith("http") ? "_blank" : "_self"}
-              class="group flex items-center gap-4 rounded-xl border border-neutral-200 bg-bg-secondary/75 p-4 transition-all hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_14px_35px_rgba(25,34,47,0.08)] dark:border-neutral-700 dark:bg-bg-secondary-dark/75 dark:hover:border-primary-light/35 dark:hover:shadow-[0_14px_35px_rgba(0,0,0,0.22)]"
+              target={isExternal ? "_blank" : "_self"}
+              rel={isExternal ? "nofollow sponsored noopener noreferrer" : undefined}
+              class="group flex items-center gap-4 rounded-2xl border border-neutral-200 bg-bg-secondary/75 p-4 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md dark:border-neutral-700 dark:bg-bg-secondary-dark/75"
               data-aos="fade-up-xs"
-              data-aos-delay={`${index * 100}`}
+              data-aos-delay={`${index * 80}`}
               data-aos-once="true"
             >
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-primary shadow-sm ring-1 ring-neutral-200/70 transition-colors group-hover:bg-primary group-hover:text-white dark:bg-neutral-900/60 dark:text-primary-light dark:ring-neutral-700 dark:group-hover:bg-primary-light dark:group-hover:text-neutral-950">
-                <Icon size={18} />
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-primary shadow-sm ring-1 ring-neutral-200/70 transition-colors group-hover:bg-primary group-hover:text-white dark:bg-neutral-900 dark:text-primary-light dark:ring-neutral-700">
+                <Icon size={19} />
               </span>
-              <span class="min-w-0">
-                <span class="block text-sm font-semibold text-neutral-800 dark:text-neutral-100">{label}</span>
-                <span class="mt-0.5 block truncate text-sm text-neutral-500 transition-colors group-hover:text-primary dark:text-neutral-400 dark:group-hover:text-primary-light">{text}</span>
+              <span class="min-w-0 flex-1">
+                <span class="block text-sm font-semibold text-neutral-900 dark:text-neutral-100">{label}</span>
+                <span class="mt-0.5 block truncate text-xs text-neutral-500 transition-colors group-hover:text-primary dark:text-neutral-400">{text}</span>
               </span>
-              <ArrowRight class="ml-auto h-4 w-4 shrink-0 text-neutral-300 transition-all group-hover:translate-x-1 group-hover:text-primary dark:text-neutral-600 dark:group-hover:text-primary-light" />
+              <ArrowRight class="h-4 w-4 shrink-0 text-neutral-300 transition-all group-hover:translate-x-1 group-hover:text-primary dark:text-neutral-600" />
             </a>
           ))}
         </div>
 
+        {/* Support Notes */}
         <div class="mt-8 border-y border-dashed border-neutral-200 py-6 dark:border-neutral-700" data-aos="fade-up-xs" data-aos-delay="200" data-aos-once="true">
-          <div class="grid gap-5">
+          <div class="space-y-4">
             {expectations.map(({ icon: Icon, title, desc }) => (
               <div class="flex gap-3">
-                <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-lighter/10 text-neutral-800 dark:bg-primary-lighter/10 dark:text-neutral-400">
-                  <Icon size={16} /> 
+                <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary dark:bg-primary/20">
+                  <Icon size={16} />
                 </span>
                 <div>
-                  <h2 class="text-sm font-semibold text-neutral-800 dark:text-neutral-100">{title}</h2>
-                  <p class="mt-1 text-sm leading-6 text-neutral-500 dark:text-neutral-400">{desc}</p>
+                  <h3 class="text-sm font-semibold text-neutral-900 dark:text-neutral-100">{title}</h3>
+                  <p class="mt-0.5 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">{desc}</p>
                 </div>
               </div>
             ))}
@@ -97,149 +125,109 @@ const expectations = [
         </div>
       </div>
 
-      <div class="mx-auto w-full max-w-xl lg:max-w-none" data-aos="fade-up-xs" data-aos-delay="100" data-aos-once="true">
-        <div class="rounded-2xl border border-neutral-200 bg-bg-secondary/85 p-5 shadow-[0_18px_60px_rgba(25,34,47,0.08)] backdrop-blur dark:border-neutral-700 dark:bg-bg-secondary-dark/85 dark:shadow-[0_18px_60px_rgba(0,0,0,0.22)] sm:p-8">
-          <div class="mb-7 flex flex-col gap-4 border-b border-dashed border-neutral-200 pb-6 dark:border-neutral-700 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p class="text-xs font-medium uppercase tracking-[0.14em] text-primary dark:text-primary-light">Message</p>
-              <h2 class="mt-3 font-brand text-4xl tracking-normal text-neutral-800 dark:text-neutral-100">Start a conversation</h2>
-              <p class="mt-3 text-sm leading-6 text-neutral-500 dark:text-neutral-400">
-                The demo handler validates fields and shows a local success state.
-              </p>
-            </div>
-            <span class="inline-flex w-fit rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-xs font-medium text-primary dark:border-primary-light/20 dark:bg-primary-light/10 dark:text-primary-light">
-              UI template
-            </span>
+      {/* Right Action Card */}
+      <div class="w-full max-w-xl mx-auto" data-aos="fade-up-xs" data-aos-delay="100" data-aos-once="true">
+        <div class="rounded-3xl border border-primary/20 bg-bg-secondary dark:bg-bg-secondary-dark p-6 md:p-8 shadow-xl">
+          <div class="mb-6">
+            <span class="text-xs font-semibold uppercase tracking-wider text-primary">极速连接指引</span>
+            <h2 class="text-2xl font-brand font-bold text-neutral-900 dark:text-white mt-1 mb-2">
+              尚未拥有灯塔加速器账号？
+            </h2>
+            <p class="text-xs md:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              注册即可体验企业级 IEPL 专线，轻量版年付折合仅需 8.25 元/月，更有斯诺克 147 永久套餐无忧过期。
+            </p>
           </div>
 
-          <form id="contact-form" class="space-y-5">
-            <div class="grid gap-5 sm:grid-cols-2">
-              <div>
-                <label for="name" class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  autocomplete="name"
-                  required
-                  placeholder="Your full name"
-                  class="contact-field"
-                />
-              </div>
-
-              <div>
-                <label for="email" class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  autocomplete="email"
-                  required
-                  placeholder="you@example.com"
-                  class="contact-field"
-                />
-              </div>
+          <div class="p-5 rounded-2xl bg-bg-primary dark:bg-neutral-800/60 border border-dashed border-primary/20 space-y-3 mb-6 text-xs">
+            <div class="flex items-center gap-2 text-neutral-700 dark:text-neutral-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <strong>自研客户端支持：</strong>Windows、macOS、Android、iOS 开箱即用
             </div>
-
-            <div>
-              <label for="subject" class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">Subject</label>
-              <select id="subject" name="subject" required class="contact-field">
-                <option value="">Select a topic</option>
-                {contactTopics.map((topic) => (
-                  <option value={topic.value}>{topic.label}</option>
-                ))}
-              </select>
+            <div class="flex items-center gap-2 text-neutral-700 dark:text-neutral-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <strong>第三方软件兼容：</strong>Clash Verge、Shadowrocket、Sing-box、v2rayN
             </div>
-
-            <div>
-              <label for="message" class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows="6"
-                placeholder="Share the goal, context, and anything we should know..."
-                class="contact-field resize-none"
-              ></textarea>
+            <div class="flex items-center gap-2 text-neutral-700 dark:text-neutral-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <strong>设备限制：</strong>全系所有套餐均不限制并发在线设备数量
             </div>
+          </div>
 
-            <div class="rounded-xl border border-dashed border-primary/20 bg-primary/5 p-4 text-sm leading-6 text-neutral-600 dark:border-primary-light/20 dark:bg-primary-light/10 dark:text-neutral-300">
-              <strong class="font-semibold text-primary dark:text-primary-light">Demo form.</strong> Connect it to Resend, Formspree, Cloudflare Forms, or your own API before going live.
-            </div>
+          <Button
+            url={siteConfig.registerUrl}
+            target="_blank"
+            type="fill"
+            className="w-full justify-center font-semibold text-base py-3.5 shadow-md"
+          >
+            立即前往官方授权注册 <ArrowRight size={17} class="ml-1" />
+          </Button>
 
-            <div class="form-submit-btn">
-              <Button type="fill" className="w-full max-w-none justify-center" url="javascript:void(0);">
-                Send message <Send size={16} />
-              </Button>
-            </div>
-
-            <div id="form-success" class="hidden rounded-xl border border-green-200 bg-green-50 p-4 text-center text-sm font-medium text-green-700 dark:border-green-800 dark:bg-green-900/20 dark:text-green-300">
-              Thanks. Message received. We will reply within 1 business day.
-            </div>
-          </form>
+          <p class="mt-4 text-center text-[11px] text-neutral-400 dark:text-neutral-500">
+            官方正版授权 · 采用 AES-256 加密 · 严格遵循零日志隐私政策
+          </p>
         </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Self-Troubleshooting Guide Before Submitting Ticket -->
+    <section class="mt-20 pt-12 border-t border-dashed border-neutral-200 dark:border-neutral-800">
+      <div class="max-w-3xl mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-primary">效率排障指引</span>
+        <h2 class="text-2xl md:text-3xl font-brand font-bold text-neutral-900 dark:text-white mt-1">
+          提交工单前的 3 步自检清单
+        </h2>
+        <p class="mt-2 text-xs md:text-sm text-neutral-500 dark:text-neutral-400">
+          统计表明，超过 85% 的“无法连接”或“延迟超时”问题可通过以下三项本地常规检查在 1 分钟内自行解决：
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {troubleshootingSteps.map((step) => (
+          <div class="p-6 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between">
+            <div>
+              <span class="text-2xl font-black text-primary/30 font-mono">{step.step}</span>
+              <h3 class="text-base font-bold text-neutral-900 dark:text-white mt-2 mb-2">{step.title}</h3>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 3: Recommended Technical Manuals -->
+    <section class="mt-16 p-8 rounded-3xl bg-primary/5 dark:bg-primary/10 border border-primary/20">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-xl font-brand font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+            <FileCode class="w-5 h-5 text-primary" /> 官方推荐图文实战手册
+          </h2>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+            阅读经过严格测试的图文配置教程，快速玩转分流规则与专线特性。
+          </p>
+        </div>
+        <a href="/blog/" class="text-xs font-semibold text-primary hover:underline flex items-center gap-1">
+          浏览博客知识库全部文章 <ArrowRight size={14} />
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {quickGuides.map((guide) => (
+          <a
+            href={guide.href}
+            class="flex items-center justify-between p-4 rounded-xl bg-bg-primary dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 hover:border-primary/40 transition-all group"
+          >
+            <div class="min-w-0 pr-3">
+              <span class="inline-block px-2 py-0.5 rounded text-[10px] font-medium bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light mb-1.5">
+                {guide.tag}
+              </span>
+              <h3 class="text-xs md:text-sm font-semibold text-neutral-800 dark:text-neutral-200 truncate group-hover:text-primary transition-colors">
+                {guide.title}
+              </h3>
+            </div>
+            <ArrowRight class="w-4 h-4 shrink-0 text-neutral-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+          </a>
+        ))}
       </div>
     </section>
   </main>
 </Layout>
-
-<style>
-  .contact-field {
-    width: 100%;
-    border-radius: 0.75rem;
-    border: 1px solid var(--color-neutral-200);
-    background: color-mix(in srgb, var(--color-bg-secondary) 82%, transparent);
-    padding: 0.875rem 1rem;
-    color: var(--color-neutral-800);
-    outline: none;
-    transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
-  }
-
-  .contact-field::placeholder {
-    color: var(--color-neutral-400);
-  }
-
-  .contact-field:focus {
-    border-color: var(--color-primary);
-    background: var(--color-bg-secondary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 22%, transparent);
-  }
-
-  :global(.dark) .contact-field {
-    border-color: var(--color-neutral-700);
-    background: color-mix(in srgb, var(--color-bg-secondary-dark) 82%, transparent);
-    color: var(--color-neutral-100);
-  }
-
-  :global(.dark) .contact-field::placeholder {
-    color: var(--color-neutral-500);
-  }
-
-  :global(.dark) .contact-field:focus {
-    border-color: var(--color-primary-light);
-    background: var(--color-bg-secondary-dark);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-light) 18%, transparent);
-  }
-</style>
-
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const successMsg = document.getElementById('form-success');
-  const submitBtn = form?.querySelector('.form-submit-btn a') as HTMLAnchorElement | null;
-
-  submitBtn?.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    if (!form?.checkValidity()) {
-      form?.reportValidity();
-      return;
-    }
-
-    successMsg?.classList.remove('hidden');
-    form.reset();
-
-    setTimeout(() => {
-      successMsg?.classList.add('hidden');
-    }, 5000);
-  });
-</script>

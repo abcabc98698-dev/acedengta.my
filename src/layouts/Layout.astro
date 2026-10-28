@@ -4,18 +4,28 @@ import TopBg from "@/components/ui/TopBg.astro";
 import Footer from "@/components/sections/Footer.astro";
 import Header from "@/components/sections/Header.astro";
 import TrackGa from "@/components/widgets/TrackGa.astro";
+
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 	keywords?: string | undefined;
+	ogImage?: string | undefined;
+	type?: 'website' | 'article' | 'collection';
+	publishDate?: Date;
+	dateModified?: Date;
+	faq?: Array<{ question: string; answer: string }>;
 }
 
 const {
 	title,
 	description,
-	keywords
+	keywords,
+	ogImage,
+	type = 'website',
+	publishDate,
+	dateModified,
+	faq,
 } = Astro.props;
-
 
 import "../styles/global.css";
 import "aos/dist/aos.css";
@@ -24,28 +34,31 @@ import '../styles/article.css';
 import '../styles/article-enhancements.css';
 ---
 
-<html lang="">
+<!doctype html>
+<html lang="zh-CN">
   <head>
-    <meta charset="UTF-8" />
     <Meta
-      title = {title}
-      description = {description}
-      keywords = {keywords}
+      title={title}
+      description={description}
+      keywords={keywords}
+      ogImage={ogImage}
+      type={type}
+      publishDate={publishDate}
+      dateModified={dateModified}
+      faq={faq}
     />
     <TrackGa />
-    <!-- Used to add dark mode right away, adding here prevents any flicker -->
+    <!-- Dark mode initializer without FOUC -->
     <script is:inline>
       if (typeof Storage !== 'undefined') {
         if (
           localStorage.getItem('dark_mode') &&
-          localStorage.getItem('dark_mode') == 'true'
+          localStorage.getItem('dark_mode') === 'true'
         ) {
-          document.documentElement.classList.add('dark')
+          document.documentElement.classList.add('dark');
         }
       }
     </script>
-
-    <link rel="icon" type="image/x-icon" href="/favicon.png" />
   </head>
   <body class="antialiased bg-bg-primary dark:bg-bg-primary-dark max-w-full overflow-x-hidden">
     <TopBg />

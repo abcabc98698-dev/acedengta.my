@@ -1,11 +1,11 @@
-# RicoFast Design System
+# AceDengta Design System
 
 
-This document describes the current visual system implemented in the RicoFast project.
+This document describes the current visual system implemented in the AceDengta project.
 
 ## Design Direction
 
-RicoFast uses a calm SaaS/product-site aesthetic:
+AceDengta uses a calm SaaS/product-site aesthetic:
 
 - Warm light canvas.
 - Blue primary accent.
@@ -189,6 +189,6 @@ Current asset groups:
 - `public/assets/stack/*`
 - `public/assets/blog/cover.jpg`
 - `public/assets/article-cover.jpg`
-- `public/rico/*`
+- `public/*`
 
-Replace these when adapting RicoFast to a real product.
+Replace these when adapting AceDengta to a real product.

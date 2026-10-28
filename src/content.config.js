@@ -14,11 +14,18 @@ const post = defineCollection({
 		title: z.string(),
 		description: z.string(),
 		publishDate: z.coerce.date(),
+		dateModified: z.coerce.date().optional(),
 		read: z.number().optional(),
 		tags: z.array(z.string()).optional(),
+		category: z.string().optional(),
+		author: z.string().optional(),
 		img: z.string().optional(),
 		img_alt: z.string().optional(),
 		featured: z.boolean().optional(),
+		primaryKeyword: z.string().optional(),
+		searchIntent: z.string().optional(),
+		contentCluster: z.string().optional(),
+		pillarPage: z.string().optional(),
 	}),
 });
 

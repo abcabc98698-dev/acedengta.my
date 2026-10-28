@@ -5,77 +5,96 @@ import PricingSection from "@/components/sections/Pricing.astro";
 import AccordionItem from "@/components/ui/AccordionItem.astro";
 import Button from "@/components/ui/Button.astro";
 import { siteConfig } from "@/config/site";
-import { Check, X, ArrowRight } from "@lucide/astro";
+import { ArrowRight, Sparkles } from "@lucide/astro";
 
 const comparisonFeatures = [
-  { name: "Projects", free: "1", pro: "Unlimited", enterprise: "Unlimited" },
-  { name: "Page templates", free: "Basic", pro: "Full", enterprise: "Full + Custom" },
-  { name: "Components", free: "Core", pro: "Full library", enterprise: "Full + Custom" },
-  { name: "Customization", free: "Limited", pro: "Full", enterprise: "Advanced" },
-  { name: "Animations", free: "Basic AOS", pro: "Full motion.js", enterprise: "Full + Custom" },
-  { name: "Support", free: "Community", pro: "Email (1 biz day)", enterprise: "Priority (same day)" },
-  { name: "Custom domain", free: false, pro: true, enterprise: true },
-  { name: "Team seats", free: "1", pro: "3", enterprise: "10+" },
-  { name: "SSO + audit log", free: false, pro: false, enterprise: true },
-  { name: "SLA", free: false, pro: false, enterprise: "99.9%" },
+  { name: "套餐资费", snooker: "147 元 (一次性)", light: "99 元 / 年 (8.25元/月)", speed: "25 元 / 月 (年付8折)", custom: "680 元 / 月" },
+  { name: "流量规格", snooker: "247GB (永久不过期)", light: "69GB / 月", speed: "168GB / 月", custom: "500GB+ / 月 (支持扩容)" },
+  { name: "专线类型", snooker: "优质原生稳定节点", light: "优质原生稳定节点", speed: "全球 IPLC / IEPL 专线", custom: "专属独立部署 IPLC 专线" },
+  { name: "节点倍率", snooker: "全节点 ×1.0 (无暗扣)", light: "全节点 ×1.0 (无暗扣)", speed: "全节点 ×1.0 (无暗扣)", custom: "独享物理专线带宽" },
+  { name: "物理峰值带宽", snooker: "最高 2.5 Gbps", light: "最高 1.0 Gbps", speed: "最高 2.5 Gbps", custom: "最高 2.5 Gbps (独立)" },
+  { name: "流媒体 4K/8K", snooker: "支持", light: "支持 (Netflix/Disney+)", speed: "全解锁 (4K/8K 极致秒开)", custom: "全解锁 (直播/超清级)" },
+  { name: "AI 生产力工具", snooker: "基础支持", light: "支持 (ChatGPT/TikTok)", speed: "完美支持 (ChatGPT/Claude)", custom: "独享原生 IP (防风控)" },
+  { name: "TikTok 跨境电商", snooker: "支持", light: "支持浏览与互动", speed: "支持商业运营", custom: "独享纯净 IP (主播推荐)" },
+  { name: "同时在线设备数", snooker: "不限设备数量", light: "不限设备数量", speed: "不限设备数量", custom: "不限设备数量" },
+  { name: "技术服务支持", snooker: "标准工单响应", light: "标准工单响应", speed: "7×24 优先客服", custom: "1对1 专属技术顾问" },
 ];
 
-const faqItems = [
-  { question: "Is there a free trial on Pro?", answer: "Yes — Pro includes a 7-day free trial. No credit card required to start; we'll only ask for billing details when the trial ends." },
-  { question: "What's your refund policy?", answer: "14-day money-back guarantee on all paid plans, no questions asked. Email hello@ricoui.com within 14 days of the charge and we'll process the refund within 2 business days." },
-  { question: "Can I upgrade or downgrade later?", answer: "Anytime. Upgrades take effect immediately and we prorate the difference. Downgrades take effect at the end of the current billing period, so you keep paid features until then." },
-  { question: "How does team billing work?", answer: "Pro includes 3 seats and Enterprise starts at 10 seats. Additional seats are $9/seat/month on Pro and $19/seat/month on Enterprise, billed on the same cycle as your main subscription." },
+const pricingFaq = [
+  {
+    question: "轻量版 8.25 元/月的折算说明是怎样的？",
+    answer: "8.25 元/月为轻量版年付 99 元方案的平均月费折算（99元 ÷ 12个月 = 8.25元/月）。用户直接按年付 99 元订阅即可享受这一低成本特惠，并非按月零散单付的价格。"
+  },
+  {
+    question: "致敬斯诺克 147 永久套餐真的不会过期吗？",
+    answer: "是的！该套餐是一次性收费 147 元，包含 247GB 高速专用流量。流量永久有效无截止日期，直到用完为止。非常适合常年备用或不常翻墙的用户。"
+  },
+  {
+    question: "极速版的阶梯折扣如何享受？",
+    answer: "极速版基础资费为 25 元/月，在控制台结算时支持多周期梯度优惠：半年付享 9 折、年付享 8 折（折合 20元/月）、两年付享 75 折、三年付低至 7 折（折合仅 17.5元/月）。"
+  },
+  {
+    question: "定制版专线如何进行线下需求确认与部署？",
+    answer: "定制版（680元/月）专为企业出海、TikTok 直播带货与跨境防关联场景打造。用户完成注册后，可在官方控制台直接提交定制工单，技术专席将在 1 小时内一对一沟通线路国家、带宽峰值及独立原生 IP 的部署细节。"
+  },
+  {
+    question: "购买后遇到线路使用或客户端配置问题怎么办？",
+    answer: "所有套餐用户均可在官方控制台发起在线客服工单，我们提供详尽的图文配置教程，技术团队 7×24 小时在线提供远程协助。"
+  },
 ];
 ---
 
 <Layout
-  title="Pricing — RicoFast"
-  description="Simple, transparent pricing. Choose a plan that fits your stage."
+  title="套餐资费 — 灯塔加速器官网"
+  description="灯塔加速器全系套餐资费明细：轻量版年付低至8.25元/月，致敬斯诺克147永久套餐247GB无忧过期，极速版全球IPLC/IEPL企业专线，以及企业定制独享原生IP方案。不限设备数量，透明定价。"
+  keywords="灯塔加速器价格, 机场套餐, 斯诺克147套餐, IEPL专线价格, 永久翻墙套餐, 年付低价机场"
+  faq={pricingFaq}
 >
   <section class="site-container my-12">
     <PageHeader
-      title="Simple, transparent pricing"
-      description="Choose a plan that fits your stage. Upgrade anytime as you grow."
+      title="透明定价，全系不限制登录设备数"
+      description="五年沉淀，专注品质专线。选择最适合您的加速方案，随时随地极速畅连世界。"
     />
-    <p class="text-center text-xs text-neutral-400 dark:text-neutral-500 mt-6 italic">
-      Demo pricing — replace with your own plans. The RicoFast template itself is free and MIT-licensed.
+    <p class="text-center text-xs text-neutral-400 dark:text-neutral-500 mt-6">
+      提示：轻量版 8.25 元/月属于年付套餐折算后的平均月成本；极速版享半年/年付多重折扣；斯诺克 147 套餐一次付费永久有效。
     </p>
   </section>
 
+  <!-- 4 Pricing Cards -->
   <PricingSection showHeader={false} />
 
-  <div class="w-full border-b border-dashed border-neutral-200 dark:border-neutral-700 my-8 site-container"></div>
+  <div class="w-full border-b border-dashed border-neutral-200 dark:border-neutral-700 my-12 site-container"></div>
 
-  <!-- Feature Comparison -->
-  <section class="site-container py-16 md:py-24" data-aos="fade-up-xs" data-aos-once="true">
-    <h2 class="text-3xl font-brand text-center mb-8">Compare plans</h2>
-    <div class="max-w-4xl mx-auto overflow-x-auto">
-      <table class="w-full">
+  <!-- Detailed Feature Comparison Table -->
+  <section class="site-container py-12 md:py-20" data-aos="fade-up-xs" data-aos-once="true">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h2 class="text-3xl font-brand font-bold text-neutral-900 dark:text-white mb-3">
+        四大套餐规格横向对比
+      </h2>
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+        所有线路均经由自动化高可用容灾架构监控，无虚标、无暗扣倍率。
+      </p>
+    </div>
+
+    <div class="max-w-5xl mx-auto overflow-x-auto rounded-2xl border border-primary/15 dark:border-neutral-700 bg-bg-secondary/60 dark:bg-bg-secondary-dark/60 p-4 md:p-6 shadow-sm">
+      <table class="w-full text-left border-collapse text-xs md:text-sm">
         <thead>
           <tr class="border-b border-dashed border-neutral-200 dark:border-neutral-700">
-            <th class="text-left py-4 pr-8 text-sm font-medium text-neutral-500">Feature</th>
-            <th class="text-center py-4 px-4 text-sm font-medium text-neutral-500">Free</th>
-            <th class="text-center py-4 px-4 text-sm font-medium text-primary">Pro</th>
-            <th class="text-center py-4 px-4 text-sm font-medium text-neutral-500">Enterprise</th>
+            <th class="py-4 px-3 font-semibold text-neutral-500">对比维度</th>
+            <th class="py-4 px-3 font-semibold text-neutral-700 dark:text-neutral-200">斯诺克 147 永久</th>
+            <th class="py-4 px-3 font-semibold text-neutral-700 dark:text-neutral-200">轻量版 (年付)</th>
+            <th class="py-4 px-3 font-bold text-primary">极速版 (🔥热门推荐)</th>
+            <th class="py-4 px-3 font-semibold text-purple-600 dark:text-purple-400">定制版 (企业/直播)</th>
           </tr>
         </thead>
         <tbody>
-          {comparisonFeatures.map((feature) => (
-            <tr class="border-b border-dashed border-neutral-100 dark:border-neutral-800">
-              <td class="py-4 pr-8 text-sm text-neutral-700 dark:text-neutral-300">{feature.name}</td>
-              {[feature.free, feature.pro, feature.enterprise].map((val) => (
-                <td class="text-center py-4 px-4">
-                  {typeof val === 'boolean' ? (
-                    val ? (
-                      <Check class="w-4 h-4 text-primary mx-auto" />
-                    ) : (
-                      <X class="w-4 h-4 text-neutral-300 dark:text-neutral-600 mx-auto" />
-                    )
-                  ) : (
-                    <span class="text-sm text-neutral-600 dark:text-neutral-300">{val}</span>
-                  )}
-                </td>
-              ))}
+          {comparisonFeatures.map((row) => (
+            <tr class="border-b border-dashed border-neutral-200/60 dark:border-neutral-800 hover:bg-primary/5 transition-colors">
+              <td class="py-3.5 px-3 font-medium text-neutral-500 dark:text-neutral-400">{row.name}</td>
+              <td class="py-3.5 px-3 text-neutral-800 dark:text-neutral-200">{row.snooker}</td>
+              <td class="py-3.5 px-3 text-neutral-800 dark:text-neutral-200">{row.light}</td>
+              <td class="py-3.5 px-3 font-semibold text-primary">{row.speed}</td>
+              <td class="py-3.5 px-3 text-neutral-800 dark:text-neutral-200">{row.custom}</td>
             </tr>
           ))}
         </tbody>
@@ -83,33 +102,45 @@ const faqItems = [
     </div>
   </section>
 
-  <div class="w-full border-b border-dashed border-neutral-200 dark:border-neutral-700 my-8 site-container"></div>
+  <div class="w-full border-b border-dashed border-neutral-200 dark:border-neutral-700 my-12 site-container"></div>
 
-  <!-- Pricing FAQ -->
-  <section class="py-16 md:py-24 site-container">
-    <h2 class="text-3xl font-brand text-center mb-8">Pricing FAQ</h2>
-    <div class="max-w-2xl mx-auto" data-aos="fade-up-xs" data-aos-once="true">
-      {faqItems.map((item, index) => (
+  <!-- Pricing Specific FAQ -->
+  <section class="py-12 md:py-20 site-container">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h2 class="text-3xl font-brand font-bold text-neutral-900 dark:text-white mb-3">
+        资费与选购常见疑问
+      </h2>
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+        若您有特殊的流量或专属带宽需求，欢迎随时联系官方客服咨询。
+      </p>
+    </div>
+    <div class="max-w-3xl mx-auto" data-aos="fade-up-xs" data-aos-once="true">
+      {pricingFaq.map((item, index) => (
         <AccordionItem question={item.question} answer={item.answer} index={index} />
       ))}
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-16 md:py-24 site-container" data-aos="fade-up-xs" data-aos-once="true">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-brand mb-4">Not sure which plan?</h2>
-      <p class="text-neutral-600 dark:text-neutral-300 mb-8 leading-relaxed">
-        Start on Free, upgrade when you outgrow it. Most teams switch to Pro within their first month.
+  <!-- Final CTA -->
+  <section class="py-16 site-container text-center" data-aos="fade-up-xs" data-aos-once="true">
+    <div class="max-w-xl mx-auto p-8 rounded-3xl border border-primary/20 bg-bg-secondary dark:bg-bg-secondary-dark shadow-lg">
+      <span class="inline-flex items-center gap-1 text-xs text-primary font-semibold mb-2">
+        <Sparkles size={14} /> 官方直营开通
+      </span>
+      <h3 class="text-2xl font-brand font-bold text-neutral-900 dark:text-white mb-3">
+        准备好体验灯塔加速器了吗？
+      </h3>
+      <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-6">
+        注册仅需 10 秒，全线支持主流平台客户端一键订阅导入。
       </p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <Button url={siteConfig.social.github} type="fill" className="text-lg px-8 py-3">
-          Start free <ArrowRight size={18} />
-        </Button>
-        <Button url="/contact" className="text-lg px-8 py-3">
-          Talk to sales
-        </Button>
-      </div>
+      <Button
+        url={siteConfig.registerUrl}
+        target="_blank"
+        type="fill"
+        className="mx-auto font-semibold px-8 py-3"
+      >
+        立即注册开通服务 <ArrowRight size={16} class="ml-1" />
+      </Button>
     </div>
   </section>
 </Layout>
